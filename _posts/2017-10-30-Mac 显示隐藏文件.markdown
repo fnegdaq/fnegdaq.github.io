@@ -5,16 +5,13 @@ date: 2017-10-30 16:20:53 +0800
 categories: jekyll update
 ---
 
-显示Mac隐藏文件的命令：`defaults write com.apple.finder AppleShowAllFiles -bool true`
-
+显示Mac隐藏文件的命令：`defaults write com.apple.finder AppleShowAllFiles -bool true`  
 隐藏Mac隐藏文件的命令：`defaults write com.apple.finder AppleShowAllFiles -bool false`
 
 **或者**
 
-显示Mac隐藏文件的命令：`defaults write com.apple.finder AppleShowAllFiles YES`
-
+显示Mac隐藏文件的命令：`defaults write com.apple.finder AppleShowAllFiles YES`  
 隐藏Mac隐藏文件的命令：`defaults write com.apple.finder AppleShowAllFiles NO`
 
-**对于 新系统Sierra**
-
+**对于 新系统Sierra**  
 可以使用系统快捷键command + shift + .直接控制显示/隐藏
