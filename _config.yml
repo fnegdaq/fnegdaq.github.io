@@ -14,13 +14,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Fenng space
-email: fenngdq@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  记录些什么～
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://fnegdaq.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: --
-github_username:  fnegdaq
+# email: fenngdq@gmail.com
+# description: > # this means to ignore newlines until "baseurl:"
+  # 记录些什么～
+# baseurl: "" # the subpath of your site, e.g. /blog
+# url: "https://fnegdaq.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: --
+# github_username:  fnegdaq
 
 # Build settings
 markdown: kramdown
