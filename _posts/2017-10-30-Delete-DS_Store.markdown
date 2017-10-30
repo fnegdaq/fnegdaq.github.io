@@ -12,7 +12,7 @@ categories: jekyll update
 
 #### 删除项目中的所有.DS_Store
 {% highlight ruby %}
-find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+1.find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
 {% endhighlight %}
 #### 将 .DS_Store 加入到 .gitignore
 {% highlight ruby %}
