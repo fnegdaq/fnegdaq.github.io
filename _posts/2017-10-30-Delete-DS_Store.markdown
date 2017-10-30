@@ -20,7 +20,7 @@ find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
 2.echo .DS_Store >> ~/.gitignore
 {% endhighlight %}
 ## 更新项目
-{% endhighlight %}
+{% highlight ruby %}
 3.git add .
 4.git commit -m 'Delete all .DS_Store'
 {% endhighlight %}
