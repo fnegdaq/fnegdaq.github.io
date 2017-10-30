@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Git使用中 .DS_Store 冲突问题"
-date: 2017-10-30
+date: 2017-10-30 11:20:53 +0800
 categories: jekyll update
 ---
 在Mac的使用中，系统会自动在每个目录中生成一个隐藏的 .DS_Store 文件。
