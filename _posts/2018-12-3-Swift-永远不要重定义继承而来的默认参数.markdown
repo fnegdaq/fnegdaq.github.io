@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "Swift-永远不要重定义继承而来的默认参数"
+date: 2018-12-3 15:49:00 +0800
+categories: jekyll update
+---
+
+如果派生类中继承而来的方法带有默认参数，不要修改它，这通常不会带来你期望的结果。
+
+例如，我们有一个的基类：
+{% highlight ruby %}
+class  Shape {
+    enum Color {
+        case red, blue, green
+    }
+    
+    func draw(color: Color = .red) {
+        print("a \(color) shape")
+    }
+}
+{% endhighlight %}  
+
+
+两个派生类：
+{% highlight ruby %}
+class Square: Shape {
+    override func draw(color: Color = .blue ) {
+        print("a \(color) square")
+    }
+}
+
+class Circle: Shape {
+    override func draw(color: Color = .green ) {
+        print("a \(color) circle")
+    }
+}
+{% endhighlight %}  
+
+在两个派生类中各自给draw(: Color)方法指定了不同的默认颜色。
+{% highlight ruby %}
+let s = Square()
+let c = Circle()
+
+s.draw()  // a blue square
+c.draw()  // a green circle
+{% endhighlight %}
+
+以上可以看到貌似执行没有问题。但是通常，我们会利用多态来动态的调用方法：
+{% highlight ruby %}
+let s: Shape = Square()
+let c: Shape = Circle()
+
+s.draw()  // a red square
+c.draw()  // a red circle
+{% endhighlight %}
+以上可以看到虽然执行了各自的方法，但是默认值却是Shape版本的。Why？
+
+因为在Swift中，继承而来的方法调用实在运行时动态派发的，Swift会在运行时动态选择一个对象真正要调用的方法。但是，方法的参数，处于性能考虑，却是静态绑定的，编译器会根据调用方法的对象类型，绑定函数参数。
+
+
+为了能在重定义继承方法的同时，又继承到基类的默认参数，这个时候就可用Extension，因为定义在extension中的方法，是不能被重定义的。我们可以把绘画的过程抽象在一个extension方法里，供外部统一调用，然后把真正的绘制过程定义成一个可以重定义的方法。
+
+{% highlight ruby %}
+class  Shape {
+    enum Color {
+        case red, blue, green
+    }
+
+    func doDraw(_ color: Color) {
+        print("a \(color) shape")
+    }
+}
+
+extension Shape {
+    func draw(color: Color = .red) {
+        doDraw(color:)
+    }
+}
+{% endhighlight %}
+
+这样draw(:Color)定义在extension中，它不可以被派生类重写。但我们可以重定义没有默认参数的doDraw(:Color)方法。
